@@ -1,0 +1,16 @@
+<td>{{book.fname + " " + book.lname + " " + book.mname}}</td>
+<td>{{book.birdthyear}}</td>
+<td>{{book.institution}}</td>
+<td>{{book.phone}}</td>
+
+<td>
+    <button type="button" class="ui blue icon button bb" (click)="browsePressed()">
+        <i class="user outline icon"></i>
+    </button>
+    <button type="button" class="ui yellow icon button bb" (click)="borrowedBooksPressed()">
+        <i class="list layout outline icon"></i>
+    </button>
+    <button type="button" class="ui red icon button bb" (click)="delete()">
+        <i class="trash outline icon"></i>
+    </button>
+</td>

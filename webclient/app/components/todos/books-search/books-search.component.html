@@ -1,0 +1,146 @@
+<div class="ui small modal search-form">
+    <i class="close icon"></i>
+    <div class="header">
+        Пошук записів
+    </div>
+    <div class="content">
+            <form class="ui form">
+                <div class="field">
+                    <div class="two fields">
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.lname">
+                                <label>Прізвище</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.lname}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.lname">
+                            </div>
+                        </div>
+
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.fname">
+                                <label>Ім'я</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.fname}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.fname">
+                            </div>
+                        </div>
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.mname">
+                                <label>По-батькові</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.mname}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.mname">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="two fields">
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.birdthyear">
+                                <label>Рік народження:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.birdthyear}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.birdthyear">
+                            </div>
+                        </div>
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.nationality">
+                                <label>Національнісь:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.nationality}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.nationality">
+                            </div>
+                        </div>
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.education">
+                                <label>Освіта:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.education}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.education">
+                            </div>
+                        </div>
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.profession">
+                                <label>Професія:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.profession}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.profession">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="two fields">
+                        <div class="eight wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.institution">
+                                <label>Навчальний заклад:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.institution}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.institution">
+                            </div>
+                        </div>
+                        <div class="eight wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.address">
+                                <label>Домашня адреса:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.address}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="two fields">
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.phone">
+                                <label>Телефон:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.phone}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.phone">
+                            </div>
+                        </div>
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.passport">
+                                <label>Паспорт:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.passport}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.passport">
+                            </div>
+                        </div>
+                        <div class="twelve wide field">
+                            <label class="ui checkbox">
+                                <input type="checkbox" [(ngModel)]="checkBook.reader_since">
+                                <label>Є читчем з:</label>
+                            </label>
+                            <div [ngClass]="{ disabled: !checkBook.reader_since}" class="ui input" >
+                                <input type="text" [(ngModel)]="book.reader_since">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <div class="actions">
+        <div (click)="searchClick()" class="ui primary deny button">
+            Пошук
+        </div>
+        <div class="ui black deny button">
+            Закрити
+        </div>
+    </div>
+</div>

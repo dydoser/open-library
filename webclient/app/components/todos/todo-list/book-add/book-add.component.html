@@ -1,0 +1,77 @@
+<div id="dialog-form" class="ui tall stacked segment" title="Додати нову книгу">
+    <form class="ui form">
+        <h4 class="ui dividing header">Створення формуляру</h4>
+        <div class="field">
+            <div class="two fields">
+                <div class="twelve wide field">
+                    <label>Прізвище</label>
+                    <input type="text" [(ngModel)]="currentBook.lname">
+                </div>
+                <div class="twelve wide field">
+                    <label>Ім'я</label>
+                    <input type="text" [(ngModel)]="currentBook.fname">
+                </div>
+                <div class="twelve wide field">
+                    <label>По-батькові</label>
+                    <input type="text" [(ngModel)]="currentBook.mname">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two fields">
+                <div class="seven wide field">
+                    <label>Рік народження:</label>
+                    <input type="text" [(ngModel)]="currentBook.birdthyear">
+                </div>
+                <div class="twelve wide field">
+                    <label>Національнісь</label>
+                    <input type="text" [(ngModel)]="currentBook.nationality" value="Україна">
+                </div>
+                <div class="twelve wide field">
+                    <label>Освіта</label>
+                    <input type="text" [(ngModel)]="currentBook.education" value="Україна">
+                </div>
+                <div class="twelve wide field">
+                    <label>Професія</label>
+                    <input type="text" [(ngModel)]="currentBook.profession" value="Україна">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two fields">
+                <div class="eight wide field">
+                    <label>Навчальний заклад</label>
+                    <input type="text" [(ngModel)]="currentBook.institution" value="Україна">
+                </div>
+                <div class="eight wide field">
+                    <label>Домашня адреса:</label>
+                    <input type="text" [(ngModel)]="currentBook.address" value="Україна">
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="two fields">
+                <div class="twelve wide field">
+                    <label>Телефон:</label>
+                    <input type="text" [(ngModel)]="currentBook.phone" value="Україна">
+                </div>
+                <div class="twelve wide field">
+                    <label>Паспорт:</label>
+                    <input type="text" [(ngModel)]="currentBook.passport" value="Україна">
+                </div>
+                <div class="four wide field">
+                    <label>Є читчем з:</label>
+                    <input type="text" [(ngModel)]="currentBook.reader_since" value="Україна">
+                </div>
+            </div>
+        </div>
+
+        <div (click)="onBookAdded()" class="ui primary button">
+            Додати
+        </div>
+        <div (click)="onCancel()" class="ui secondary button">
+            Відмінити
+        </div>
+    </form>
+</div>

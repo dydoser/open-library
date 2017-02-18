@@ -1,0 +1,49 @@
+<div id="container">
+    <table id="mainTable" class="ui celled table">
+        <thead>
+            <tr>
+                <th>ПІБ</th>
+                <th>Рік народження</th>
+                <th>Навчальний заклад</th>
+                <th style="width: 170px;">Телефон</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <tr book-item
+            *ngFor="let book of books" [book]="book"
+            (deleted)="onBookDeleted($event)"
+            (changeCurrBook)="currBookChanged.emit($event);"
+            (borrowedPressed)="borrowedPressedEv.emit($event);">
+        </tr>
+
+        </tbody>
+        <tfoot>
+                <th colspan="2">
+                    <button *ngIf="!displayAddForm" (click)="openAddMenu();" class="ui primary button">
+                        Створити формуляр
+                    </button>
+                    <button type="button" class="ui green icon button" (click)="refreshClick()">
+                        <i style="display:inline;" class="refresh outline icon"></i>
+                    </button>
+                    <button type="button" class="ui purple icon button" (click)="search()">
+                        <i style="display:inline;" class="search outline icon"></i>
+                    </button>
+                </th>
+                <th colspan="5">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                        <a class="item">1</a>
+                        <a class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </th>
+        </tfoot>
+    </table>
+
+    <book-add [style.display]="displayAddForm ? 'inline' : 'none'" (cancelPressed)="onCancel()" (bookAdded)="onBookAdded($event)"></book-add>
+</div>

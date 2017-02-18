@@ -1,0 +1,69 @@
+<div class="ui small modal borrowed-form">
+    <i class="close icon"></i>
+    <div class="header">
+        Список книг, виданих за формуляром:
+    </div>
+    <div CLASS="content" id="container">
+        <table id="mainTable" class="ui celled table">
+            <thead>
+            <tr>
+                <th>Автор і заголовок</th>
+                <th>Дата видачі</th>
+                <th>Примітка</th>
+                <th>Дії</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bbook of borrowedBooks">
+                <td>{{bbook.title}}</td>
+                <td>{{bbook.extradition}}</td>
+                <td>{{bbook.note}}</td>
+                <td>
+                    <button type="button" class="ui red icon button bb" (click)="delete()">
+                        <i class="trash outline icon"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <th colspan="2">
+                <button *ngIf="!displayAddForm" (click)="openAddMenu();" class="ui primary button">
+                    Видати книгу
+                </button>
+            </th>
+            <th colspan="5">
+
+            </th>
+            </tfoot>
+        </table>
+
+        <div *ngIf="displayAddForm" id="dialog-form" class="ui tall stacked segment" title="Додати нову книгу">
+            <form class="ui form">
+                <h4 class="ui dividing header">Видача книги</h4>
+                <div class="field">
+                    <div class="field">
+                        <label>Автор та назва</label>
+                        <input type="text" [(ngModel)]="borrowedBook.title">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="field">
+                        <label>Примітка</label>
+                        <input type="text" [(ngModel)]="borrowedBook.note">
+                    </div>
+                </div>
+                <div (click)="onBookAdded()" class="ui primary button">
+                    Видати
+                </div>
+                <div (click)="onCancel()" class="ui secondary button">
+                    Відмінити
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Закрити
+        </div>
+    </div>
+</div>

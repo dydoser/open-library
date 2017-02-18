@@ -1,0 +1,86 @@
+<div class="ui small modal read-form">
+    <i class="close icon"></i>
+    <div class="header">
+        Перегляд запису
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <div class="field">
+                <div class="two fields">
+                    <div class="twelve wide field">
+                        <label>Прізвище</label>
+                        <input type="text" [(ngModel)]="book.lname">
+                    </div>
+
+                    <div class="twelve wide field">
+                            <label>Ім'я</label>
+                            <input type="text" [(ngModel)]="book.fname">
+                    </div>
+                    <div class="twelve wide field">
+                            <label>По-батькові</label>
+                            <input type="text" [(ngModel)]="book.mname">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    <div class="twelve wide field">
+                            <label>Рік народження:</label>
+                            <input type="text" [(ngModel)]="book.birdthyear">
+                    </div>
+                    <div class="twelve wide field">
+                            <label>Національнісь:</label>
+                            <input type="text" [(ngModel)]="book.nationality">
+                    </div>
+                    <div class="twelve wide field">
+                            <label>Освіта:</label>
+                            <input type="text" [(ngModel)]="book.education">
+                    </div>
+                    <div class="twelve wide field">
+                            <label>Професія:</label>
+                            <input type="text" [(ngModel)]="book.profession">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="two fields">
+                    <div class="eight wide field">
+                            <label>Навчальний заклад:</label>
+                            <input type="text" [(ngModel)]="book.institution">
+                    </div>
+                    <div class="eight wide field">
+                            <label>Домашня адреса:</label>
+                            <input type="text" [(ngModel)]="book.address">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="two fields">
+                    <div class="twelve wide field">
+                            <label>Телефон:</label>
+                            <input type="text" [(ngModel)]="book.phone">
+                    </div>
+                    <div class="twelve wide field">
+                            <label>Паспорт:</label>
+                            <input type="text" [(ngModel)]="book.passport">
+                    </div>
+                    <div class="twelve wide field">
+                            <label>Є читчем з:</label>
+                            <input type="text" [(ngModel)]="book.reader_since">
+                        </div>
+                    </div>
+                </div>
+    </form>
+
+    </div>
+    <div class="actions">
+        <div (click)="onBookUpdate()" class="ui primary deny button">
+            Оновити запис
+        </div>
+        <div class="ui black deny button">
+            Закрыть
+        </div>
+    </div>
+</div>
