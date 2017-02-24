@@ -52,6 +52,7 @@ var TodoListComponent = (function () {
         this.displayAddForm = true;
     };
     TodoListComponent.prototype.onBookAdded = function (book) {
+        console.log("todo-list");
         this.created.emit(book);
         this.displayAddForm = false;
     };

@@ -22,7 +22,7 @@ export class BookSearch {
             searchQuery.lname = this.book.lname;
         if(this.checkBook.mname)
             searchQuery.mname = this.book.mname;
-        if(this.checkBook.birdthday)
+        if(this.checkBook.birdthyear)
             searchQuery.birdthyear = this.book.birdthyear;
         if(this.checkBook.nationality)
             searchQuery.nationality = this.book.nationality;
@@ -43,6 +43,11 @@ export class BookSearch {
             searchQuery.reader_since = this.book.reader_since;
         if(this.checkBook.photo_url)
             searchQuery.photo_url = this.book.photo_url;
+
+        if(this.checkBook.birdthyear)
+            searchQuery.birdthyear = Number(this.book.birdthyear);
+
+
         this.filterBooks.emit(searchQuery);
     }
     ngAfterViewInit() {

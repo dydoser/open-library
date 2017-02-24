@@ -36,7 +36,7 @@ export class CheckReaderForm {
         this.fname = false;
         this.lname = false;
         this.mname = false;
-        this.birdthday = false;
+        this.birdthyear = false;
         this.nationality = false;
         this.education = false;
         this.profession = false;
@@ -52,7 +52,7 @@ export class CheckReaderForm {
     fname: boolean;
     lname: boolean;
     mname: boolean;
-    birdthday: boolean;
+    birdthyear: boolean;
     nationality: boolean;
     education: boolean;
     profession: boolean;

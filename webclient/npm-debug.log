@@ -1,13 +1,13 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'start' ]
-2 info using npm@3.10.9
-3 info using node@v7.2.0
+2 info using npm@3.10.8
+3 info using node@v6.9.1
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info lifecycle angular2do@0.1.0~prestart: angular2do@0.1.0
 6 silly lifecycle angular2do@0.1.0~prestart: no script for prestart, continuing
 7 info lifecycle angular2do@0.1.0~start: angular2do@0.1.0
 8 verbose lifecycle angular2do@0.1.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle angular2do@0.1.0~start: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/work/open-library/webclient/node_modules/.bin:/home/origin/bin:/home/origin/.local/bin:/home/origin/bin:/home/origin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+9 verbose lifecycle angular2do@0.1.0~start: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/work/open-library/webclient/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/protobuf/bin/:/home/origin/Desktop/INPATH:/snap/bin:/opt/protobuf/bin/:/home/origin/Desktop/INPATH:/home/origin/Desktop/INPATH/:/opt/protobuf/bin:/scripts/
 10 verbose lifecycle angular2do@0.1.0~start: CWD: /work/open-library/webclient
 11 silly lifecycle angular2do@0.1.0~start: Args: [ '-c', 'tsc && concurrently "tsc -w" "lite-server" ' ]
 12 silly lifecycle angular2do@0.1.0~start: Returned: code: 2  signal: null
@@ -20,14 +20,14 @@
 14 verbose stack     at ChildProcess.<anonymous> (/usr/lib/node_modules/npm/lib/utils/spawn.js:40:14)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at ChildProcess.emit (events.js:191:7)
-14 verbose stack     at maybeClose (internal/child_process.js:885:16)
+14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid angular2do@0.1.0
 16 verbose cwd /work/open-library/webclient
-17 error Linux 4.4.0-57-generic
+17 error Linux 4.4.0-62-generic
 18 error argv "/usr/bin/nodejs" "/usr/bin/npm" "start"
-19 error node v7.2.0
-20 error npm  v3.10.9
+19 error node v6.9.1
+20 error npm  v3.10.8
 21 error code ELIFECYCLE
 22 error angular2do@0.1.0 start: `tsc && concurrently "tsc -w" "lite-server" `
 22 error Exit status 2

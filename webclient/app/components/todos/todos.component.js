@@ -18,7 +18,7 @@ var borrowed_form_component_1 = require("./borrowed-form/borrowed-form.component
 var TodosComponent = (function () {
     function TodosComponent(todoService) {
         this.todoService = todoService;
-        this.currBook = new reader_form_model_1.ReaderForm();
+        this.currForm = new reader_form_model_1.ReaderForm();
         this.books = [];
         this.borrowedBooks = [];
     }
@@ -29,33 +29,45 @@ var TodosComponent = (function () {
     TodosComponent.prototype.ngOnInit = function () {
         this.loadBooks();
     };
+    TodosComponent.prototype.onBorrowedDeleted = function (borrowed) {
+        var _this = this;
+        this.todoService.deleteBorrowed(borrowed).then(function (b) {
+            _this.borrowedBooks.splice(_this.borrowedBooks.indexOf(_this.borrowedBooks.find(function (currTodo) { return currTodo._id == borrowed._id; })), 1);
+        });
+    };
     TodosComponent.prototype.onBorrowedCreated = function (borrowed) {
         var _this = this;
-        this.todoService.postBorrowed(borrowed).then(function (res) { borrowed._id = res._id; _this.borrowedBooks.push(borrowed); });
+        var self = this;
+        this.todoService.postBorrowed(borrowed).then(function (res) {
+            borrowed._id = res._id;
+            _this.borrowedBooks.push(borrowed);
+            //self.todoService.getBorrowed(self.currForm._id).then(borrowedBooks => this.borrowedBooks = borrowedBooks)
+        });
     };
     TodosComponent.prototype.onBookCreated = function (book) {
-        var _this = this;
-        this.todoService.addTodo(book).then(function (res) { book._id = res._id; _this.addTodo(book); });
+        var self = this;
+        this.todoService.addTodo(book, function (res) {
+            book._id = res._id;
+            self.books.push(book);
+        });
     };
     TodosComponent.prototype.onTodoDeleted = function (todo) {
         var _this = this;
         this.todoService.deleteTodo(todo).then(function (todo) { return _this.deleteTodo(todo); });
     };
-    TodosComponent.prototype.onBorrowedPressed = function (todo) {
+    TodosComponent.prototype.onBorrowedPressed = function (form) {
         var _this = this;
-        this.todoService.getBorrowed(todo._id).then(function (borrowedBooks) { return _this.borrowedBooks = borrowedBooks; });
+        this.currForm = form;
+        this.todoService.getBorrowed(form._id).then(function (borrowedBooks) { return _this.borrowedBooks = borrowedBooks; });
     };
     TodosComponent.prototype.onBookUpdate = function (book) {
         this.todoService.saveTodo(book).then(function (book) { });
-    };
-    TodosComponent.prototype.addTodo = function (todo) {
-        this.books.push(todo);
     };
     TodosComponent.prototype.deleteTodo = function (todo) {
         this.books.splice(this.books.indexOf(this.books.find(function (currTodo) { return currTodo._id == todo._id; })), 1);
     };
     TodosComponent.prototype.currBookChanged = function (book) {
-        this.currBook = book;
+        this.currForm = book;
     };
     TodosComponent.prototype.applyFilter = function (filter) {
         var _this = this;

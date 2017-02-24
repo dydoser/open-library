@@ -8,9 +8,10 @@ import {BorrowedBook} from "../../../shared/borrowed_book_model";
 })
 
 export class BorrowedForm {
-    @Input() book: ReaderForm;
+    @Input() currForm: ReaderForm;
     @Input() borrowedBooks: BorrowedBook[];
     @Output() borrowedCreated: EventEmitter<BorrowedBook> = new EventEmitter<BorrowedBook>();
+    @Output() borrowedDeleted: EventEmitter<BorrowedBook> = new EventEmitter<BorrowedBook>();
     displayAddForm: boolean = false;
 
     borrowedBook: BorrowedBook = new BorrowedBook();
@@ -18,14 +19,25 @@ export class BorrowedForm {
         this.displayAddForm = false;
     }
 
-    ngAfterViewInit() {
+    deleteBook(book: BorrowedBook) {
+        this.borrowedDeleted.emit(book);
     }
+
+    ngAfterViewInit() {
+        window.dispatchEvent(new Event('resize'));
+    }
+
     onBookUpdate() {
     }
+
     openAddMenu() {
+        window.dispatchEvent(new Event('resize'));
         this.displayAddForm = true;
     }
+
     onBookAdded() {
-        
+        this.borrowedBook.extradition = "Тільки що";
+        this.borrowedBook['form_id'] = this.currForm._id;
+        this.borrowedCreated.emit(this.borrowedBook);
     }
 }

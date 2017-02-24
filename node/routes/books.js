@@ -6,7 +6,6 @@ var ObjectID = require('mongodb').ObjectID;
 router.post('/', function(req, res, next) {
     var document = req.body;
     delete document._id;
-    console.log(req.body);
     res.app.booksCollection.insertOne(document, function (err, result) {
         if(err)
             throw err;
@@ -16,24 +15,36 @@ router.post('/', function(req, res, next) {
 
 router.post('/filter', function(req, res, next) {
     var document = req.body;
+
+    console.log(document);
+
     if(document.fname)
-        document.fname = new RegExp(document.fname.replace(/[^\w\s]/gi, ''));
+        document.fname = new RegExp('\.*'+document.fname+'.*', 'i');
+
     if(document.lname)
-        document.lname = new RegExp(document.lname.replace(/[^\w\s]/gi, ''));
+        document.lname = new RegExp('\.*'+document.lname+'.*', 'i');
+
     if(document.mname)
-        document.mname = new RegExp(document.mname.replace(/[^\w\s]/gi, ''));
+        document.mname = new RegExp('\.*'+document.mname+'.*', 'i');
+
     if(document.nationality)
-        document.nationality = new RegExp(document.nationality.replace(/[^\w\s]/gi, ''));
+        document.nationality = new RegExp('\.*'+document.nationality+'.*', 'i');
+
     if(document.education)
-        document.education = new RegExp(document.education.replace(/[^\w\s]/gi, ''));
+        document.education = new RegExp('\.*'+document.education+'.*', 'i');
+
     if(document.institution)
-        document.institution = new RegExp(document.institution.replace(/[^\w\s]/gi, ''));
+        document.institution = new RegExp('\.*'+document.institution+'.*', 'i');
+
     if(document.address)
-        document.address = new RegExp(document.address.replace(/[^\w\s]/gi, ''));
+        document.address = new RegExp('\.*'+document.address+'.*', 'i');
+
     if(document.phone)
-        document.phone = new RegExp(document.phone.replace(/[^\w\s]/gi, ''));
+        document.phone = new RegExp('\.*'+document.phone+'.*', 'i');
+
     if(document.passport)
-        document.passport = new RegExp(document.passport.replace(/[^\w\s]/gi, ''));
+        document.passport = new RegExp('\.*'+document.passport+'.*', 'i');
+
 
     req.app.booksCollection.find(document, {},
         {

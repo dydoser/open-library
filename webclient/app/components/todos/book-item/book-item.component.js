@@ -22,6 +22,9 @@ var BookItem = (function () {
     };
     BookItem.prototype.borrowedBooksPressed = function () {
         this.borrowedPressed.emit(this.book);
+        setTimeout(function () {
+            window.dispatchEvent(new Event('resize'));
+        }, 1000);
         showBorrowedForm();
     };
     BookItem.prototype.browsePressed = function () {

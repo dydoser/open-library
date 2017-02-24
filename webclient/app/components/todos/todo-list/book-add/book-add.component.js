@@ -19,6 +19,7 @@ var BookAddComponent = (function () {
     BookAddComponent.prototype.ngAfterViewInit = function () {
     };
     BookAddComponent.prototype.onBookAdded = function () {
+        console.log("book-add");
         this.bookAdded.emit(this.currentBook);
         this.currentBook = new reader_form_model_1.ReaderForm();
     };

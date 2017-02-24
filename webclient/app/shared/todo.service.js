@@ -13,6 +13,10 @@ var http_1 = require("@angular/http");
 require('rxjs/add/operator/toPromise');
 require('../app.settings');
 var app_settings_1 = require("../app.settings");
+require('rxjs/observable/of');
+require('rxjs/add/operator/share');
+require('rxjs/add/operator/publish');
+require('rxjs/add/operator/map');
 var TodoService = (function () {
     function TodoService(http) {
         this.http = http;
@@ -38,6 +42,13 @@ var TodoService = (function () {
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
+    TodoService.prototype.deleteBorrowed = function (borrowed) {
+        var url = app_settings_1.restApiUrl + ("borrowed/" + borrowed._id);
+        return this.http.delete(url, {})
+            .toPromise()
+            .then(function (res) { return borrowed; })
+            .catch(this.handleError);
+    };
     TodoService.prototype.getFilteredTodos = function (filter) {
         var body = JSON.stringify(filter);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
@@ -47,8 +58,18 @@ var TodoService = (function () {
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
-    TodoService.prototype.addTodo = function (todo) {
-        return this.post(todo);
+    TodoService.prototype.addTodo = function (todo, callback) {
+        console.log("service:addTodo");
+        console.log("service:post");
+        var body = JSON.stringify(todo);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(app_settings_1.restApiUrl + "books", body, options)
+            .share()
+            .map(function (res) {
+            callback(JSON.parse(res.text()));
+        })
+            .subscribe(function (data) { }, function (err) { });
     };
     TodoService.prototype.deleteTodo = function (todo) {
         return this.delete(todo);
@@ -66,15 +87,6 @@ var TodoService = (function () {
             .catch(this.handleError);
     };
     ;
-    TodoService.prototype.post = function (todo) {
-        var body = JSON.stringify(todo);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(app_settings_1.restApiUrl + "books", body, options)
-            .toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(this.handleError);
-    };
     TodoService.prototype.delete = function (todo) {
         var url = app_settings_1.restApiUrl + ("books/" + todo._id);
         return this.http.delete(url, {})

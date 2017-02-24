@@ -24,6 +24,9 @@ export class BookItem {
 
     borrowedBooksPressed() {
         this.borrowedPressed.emit(this.book);
+        setTimeout(function () {
+            window.dispatchEvent(new Event('resize'));
+        }, 1000);
         showBorrowedForm();
     }
 

@@ -21,45 +21,61 @@ export class TodosComponent implements OnInit {
     ngOnInit(): any {
         this.loadBooks();
     }
-    currBook: ReaderForm;
+    currForm: ReaderForm;
     books: ReaderForm[];
 
     borrowedBooks: BorrowedBook[];
 
     constructor (private todoService: TodoService){
-        this.currBook = new ReaderForm();
+        this.currForm = new ReaderForm();
         this.books = [];
         this.borrowedBooks = [];
     }
 
+    onBorrowedDeleted(borrowed: BorrowedBook) {
+        this.todoService.deleteBorrowed(borrowed).then(b => {
+            this.borrowedBooks.splice(
+                this.borrowedBooks.indexOf(
+                    this.borrowedBooks.find(
+                        currTodo => currTodo._id == borrowed._id)), 1);
+        });
+    }
+
     onBorrowedCreated(borrowed: BorrowedBook): void {
-        this.todoService.postBorrowed(borrowed).then(res =>  { borrowed._id = res._id; this.borrowedBooks.push(borrowed) });
+        var self = this;
+        this.todoService.postBorrowed(borrowed).then(res =>  {
+            borrowed._id = res._id;
+            this.borrowedBooks.push(borrowed);
+            //self.todoService.getBorrowed(self.currForm._id).then(borrowedBooks => this.borrowedBooks = borrowedBooks)
+        });
     }
 
     onBookCreated(book: ReaderForm): void {
-        this.todoService.addTodo(book).then(res =>  { book._id = res._id; this.addTodo(book) });
+        var self = this;
+        this.todoService.addTodo(book, function (res: ReaderForm) {
+            book._id = res._id;
+            self.books.push(book);
+        });
     }
 
     onTodoDeleted(todo: ReaderForm): void {
         this.todoService.deleteTodo(todo).then(todo => this.deleteTodo(todo))
     }
 
-    onBorrowedPressed(todo: ReaderForm): void {
-        this.todoService.getBorrowed(todo._id).then(borrowedBooks => this.borrowedBooks = borrowedBooks)
+    onBorrowedPressed(form: ReaderForm): void {
+        this.currForm = form;
+        this.todoService.getBorrowed(form._id).then(borrowedBooks => this.borrowedBooks = borrowedBooks)
     }
 
     onBookUpdate(book: ReaderForm):void {
         this.todoService.saveTodo(book).then(book => {});
-    }
-    addTodo(todo: ReaderForm): void {
-        this.books.push(todo);
     }
 
     deleteTodo(todo: ReaderForm): void {
         this.books.splice(this.books.indexOf(this.books.find(currTodo => currTodo._id == todo._id)), 1);
     }
     currBookChanged(book: ReaderForm) {
-        this.currBook = book;
+        this.currForm = book;
     }
     applyFilter(filter: any) {
         this.todoService.getFilteredTodos(filter).then(todos => this.books = todos);

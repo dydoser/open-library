@@ -21,6 +21,7 @@ export class BookAddComponent {
     }
 
     onBookAdded() {
+        console.log("book-add");
         this.bookAdded.emit(this.currentBook);
         this.currentBook = new ReaderForm();
     }

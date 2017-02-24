@@ -62,6 +62,7 @@ export class TodoListComponent {
     }
 
     onBookAdded(book: ReaderForm) {
+        console.log("todo-list");
         this.created.emit(book);
         this.displayAddForm = false;
     }

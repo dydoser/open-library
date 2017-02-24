@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core'
-import {Http, Headers, Request, RequestOptions} from "@angular/http";
+import {Http, Headers, Request, RequestOptions, Response} from "@angular/http";
 import 'rxjs/add/operator/toPromise'
 import '../app.settings'
 import {restApiUrl} from "../app.settings";
 import {ReaderForm} from "./reader_form.model";
 import {BorrowedBook} from "./borrowed_book_model";
+import {Observable} from 'rxjs/Observable'
+import 'rxjs/observable/of';
+import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/publish';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TodoService {
     constructor(private http: Http) { }
-
     getTodos(): Promise<ReaderForm[]> {
         return this.http.get(restApiUrl + "books")
             .toPromise()
@@ -34,6 +38,14 @@ export class TodoService {
             .catch(this.handleError);
     }
 
+    deleteBorrowed(borrowed: BorrowedBook): Promise<BorrowedBook> {
+        let url = restApiUrl + `borrowed/${borrowed._id}`;
+        return this.http.delete(url, { })
+            .toPromise()
+            .then(res => borrowed)
+            .catch(this.handleError);
+    }
+
     getFilteredTodos(filter: any): Promise<ReaderForm[]> {
         let body = JSON.stringify(filter);
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -45,8 +57,22 @@ export class TodoService {
             .catch(this.handleError);
     }
 
-    addTodo(todo: ReaderForm): Promise<ReaderForm> {
-        return this.post(todo);
+    addTodo(todo: ReaderForm, callback: any) {
+        console.log("service:addTodo");
+        console.log("service:post");
+        let body = JSON.stringify(todo);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions( { headers });
+
+        return this.http.post(restApiUrl+"books", body, options)
+            .share()
+            .map((res: Response) => {
+                callback(JSON.parse(res.text()));
+            })
+            .subscribe(
+                (data) => {},
+                (err) => {}
+            );
     }
 
     deleteTodo(todo: ReaderForm): Promise<ReaderForm> {
@@ -67,17 +93,6 @@ export class TodoService {
             .then()
             .catch(this.handleError);
     };
-
-    private post(todo: ReaderForm) {
-        let body = JSON.stringify(todo);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions( { headers });
-
-        return this.http.post(restApiUrl+"books", body, options)
-            .toPromise()
-            .then(res => res.json())
-            .catch(this.handleError);
-    }
 
     private delete(todo: ReaderForm) : Promise<ReaderForm> {
         let url = restApiUrl + `books/${todo._id}`;

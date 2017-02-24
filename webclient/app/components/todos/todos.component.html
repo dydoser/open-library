@@ -1,4 +1,10 @@
-<book-item-read-form #BrowseForm [book]="currBook" (updateBook)="onBookUpdate($event)" ></book-item-read-form>
-<borrowed-form #BorrowForm [book]="currBook" [borrowedBooks]="borrowedBooks" (updateBook)="onBookUpdate($event)" ></borrowed-form>
+<book-item-read-form #BrowseForm [book]="currForm" (updateBook)="onBookUpdate($event)" ></book-item-read-form>
+<borrowed-form #BorrowForm
+               [currForm]="currForm"
+               [borrowedBooks]="borrowedBooks"
+               (updateBook)="onBookUpdate($event)"
+               (borrowedCreated)="onBorrowedCreated($event)"
+               (borrowedDeleted)="onBorrowedDeleted($event)"
+></borrowed-form>
 <search-form (filterBooks)="applyFilter($event)"></search-form>
 <todo-list [books]="books" (refresh)="loadBooks()" (currBookChanged)="currBookChanged($event)" (created)="onBookCreated($event)" (changed)="onTodoChanged($event)" (deleted)="onTodoDeleted($event)" (borrowedPressedEv)="onBorrowedPressed($event)"></todo-list>
